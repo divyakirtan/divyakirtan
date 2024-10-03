@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int main() {
+    int arr[100],n,i,max,sec_max;
+    printf("enter the number of elements(max 100):",n);
+    scanf("%d",&n);
+    
+    printf("enter %d elements:\n",n);
+    for(i=0;i<n;i++){
+        scanf("%d",&arr[i]);
+    }
+    max=sec_max=-999999;
+    for(i=0;i<n;i++){
+        if (arr[i]>max){
+            sec_max=max;
+            max=arr[i];
+        }else if(arr[i]>sec_max && arr[i]!=max){
+            sec_max=arr[i];
+        }
+    }
+    if(sec_max==-999999){
+        printf("no second largest element exists\n");
+    }else{
+        printf("second largest element=%d\n",sec_max);
+    }
+
+    return 0;
+}
