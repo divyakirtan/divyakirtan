@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+#define ASCII_SIZE 256 
+
+void characterFrequency(const char *str) {
+    int frequency[ASCII_SIZE] = {0}; 
+    while (*str) {
+        frequency[*str]++; 
+        str++;
+    }
+    printf("Character frequencies:\n");
+    for (int i = 0; i < ASCII_SIZE; i++) {
+        if (frequency[i] > 0) {
+            printf("'%c': %d\n", i, frequency[i]); 
+        }
+    }
+}
+
+int main() {
+    char str[100];
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin); 
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] == '\n') {
+            str[i] = '\0';
+            break;
+        }
+    }
+
+    characterFrequency(str); 
+
+    return 0;
+}
