@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+
+union Data {
+    int intValue;
+    float floatValue;
+    char stringValue[50];
+};
+
+int main() {
+
+    data.intValue = 42;
+    printf("Integer Value: %d\n", data.intValue);
+
+    data.floatValue = 3.14;
+    printf("Float Value: %f\n", data.floatValue);
+
+    strcpy(data.stringValue, "Hello, Union!");
+    printf("String Value: %s\n", data.stringValue);
+
+    printf("\nAfter assigning a string value:\n");
+    printf("Integer Value (overwritten): %d\n", data.intValue);
+    printf("Float Value (overwritten): %f\n", data.floatValue); 
+    printf("String Value: %s\n", data.stringValue);
+
+    return 0;
+}
