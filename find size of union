@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+union Data {
+    int intValue;
+    float floatValue;
+    char stringValue[50];
+};
+
+int main() {
+    printf("Size of the union Data: %zu bytes\n", sizeof(union Data));
+
+    return 0;
+}
