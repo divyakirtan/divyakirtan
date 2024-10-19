@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h>
+
+
+struct Person {
+    char name[100];
+    int age;
+};
+
+
+void swap(struct Person *a, struct Person *b) {
+    struct Person temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+
+void sortByAge(struct Person arr[], int n) {
+    int i, j;
+    for (i = 0; i < n - 1; i++) {
+        for (j = 0; j < n - 1 - i; j++) {
+            if (arr[j].age > arr[j + 1].age) {
+                swap(&arr[j], &arr[j + 1]);
+            }
+        }
+    }
+}
+
+
+void printArray(struct Person arr[], int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        printf("Name: %s, Age: %d\n", arr[i].name, arr[i].age);
+    }
+}
+
+int main() {
+    int n, i;
+    
+    
+    printf("Enter number of persons: ");
+    scanf("%d", &n);
+    
+    
+    struct Person persons[n];
+    
+   
+    for (i = 0; i < n; i++) {
+        printf("Enter name and age of person %d: ", i + 1);
+        scanf("%s %d", persons[i].name, &persons[i].age);
+    }
+    
+    sortByAge(persons, n);
+    
+    
+    printf("\nSorted list by age:\n");
+    printArray(persons, n);
+    
+    return 0;
+}
