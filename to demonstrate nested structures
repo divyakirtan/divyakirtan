@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+
+struct Address {
+    char street[100];
+    char city[50];
+    int zipCode;
+};
+
+
+struct Student {
+    char name[100];
+    int rollNo;
+    struct Address addr;  
+};
+
+
+void inputStudent(struct Student *s) {
+    printf("Enter name: ");
+    scanf("%s", s->name);
+    printf("Enter roll number: ");
+    scanf("%d", &s->rollNo);
+
+   
+    printf("Enter street: ");
+    scanf("%s", s->addr.street);
+    printf("Enter city: ");
+    scanf("%s", s->addr.city);
+    printf("Enter zip code: ");
+    scanf("%d", &s->addr.zipCode);
+}
+
+
+void displayStudent(struct Student *s) {
+    printf("\nStudent Information:\n");
+    printf("Name: %s\n", s->name);
+    printf("Roll Number: %d\n", s->rollNo);
+    printf("Address: %s, %s, %d\n", s->addr.street, s->addr.city, s->addr.zipCode);
+}
+
+int main() {
+    struct Student student;
+
+   
+    inputStudent(&student);
+
+    
+    displayStudent(&student);
+
+    return 0;
+}
