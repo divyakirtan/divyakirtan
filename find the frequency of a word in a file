@@ -1,0 +1,66 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+int isWordSeparator(char ch) {
+    return isspace(ch) || ch == '.' || ch == ',' || ch == '!' || ch == '?' || ch == ';' || ch == ':';
+}
+
+int main() {
+    FILE *file;
+    char filename[100];
+    char word[100], temp[100];
+    int count = 0;
+    int i, j;
+
+   
+    printf("Enter the name of the file: ");
+    scanf("%s", filename);
+
+    
+    printf("Enter the word to find: ");
+    scanf("%s", word);
+
+    
+    file = fopen(filename, "r");
+    if (file == NULL) {
+        printf("Could not open file %s\n", filename);
+        return 1;
+    }
+
+   
+    for (i = 0; word[i]; i++) {
+        word[i] = tolower(word[i]);
+    }
+
+   
+    while (fscanf(file, "%s", temp) == 1) {
+        
+        for (i = 0; temp[i]; i++) {
+            temp[i] = tolower(temp[i]);
+        }
+
+       
+        i = 0;
+        while (temp[i] != '\0') {
+            if (isWordSeparator(temp[i])) {
+                temp[i] = '\0';
+                break;
+            }
+            i++;
+        }
+
+        
+        if (strcmp(temp, word) == 0) {
+            count++;
+        }
+    }
+
+    
+    fclose(file);
+
+    printf("The word '%s' appears %d times in the file %s.\n", word, count, filename);
+
+    return 0;
+}
