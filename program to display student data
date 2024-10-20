@@ -1,0 +1,56 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_STUDENTS 100
+#define MAX_NAME_LENGTH 50
+
+
+struct Student {
+    char name[MAX_NAME_LENGTH];
+    float grade;
+};
+
+
+void inputStudents(struct Student students[], int count) {
+    for (int i = 0; i < count; i++) {
+        printf("Enter name of student %d: ", i + 1);
+        scanf("%s", students[i].name);
+        printf("Enter grade of student %d: ", i + 1);
+        scanf("%f", &students[i].grade);
+    }
+}
+
+
+void displayStudents(const struct Student students[], int count) {
+    printf("\nStudent Grades:\n");
+    printf("--------------------------------------------------\n");
+    printf("| %-20s | %-5s |\n", "Name", "Grade");
+    printf("--------------------------------------------------\n");
+    for (int i = 0; i < count; i++) {
+        printf("| %-20s | %-5.2f |\n", students[i].name, students[i].grade);
+    }
+    printf("--------------------------------------------------\n");
+}
+
+int main() {
+    struct Student students[MAX_STUDENTS];
+    int numStudents;
+
+    
+    printf("Enter the number of students: ");
+    scanf("%d", &numStudents);
+
+   
+    if (numStudents < 1 || numStudents > MAX_STUDENTS) {
+        printf("Invalid number of students! Please enter a value between 1 and %d.\n", MAX_STUDENTS);
+        return 1; 
+    }
+
+   
+    inputStudents(students, numStudents);
+
+    
+    displayStudents(students, numStudents);
+
+    return 0;
+}
